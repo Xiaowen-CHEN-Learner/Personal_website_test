@@ -1,1 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xavier Chen | Research Library</title>
+  //fonts.googleapis.com" />
+  //fonts.gstatic.com" crossorigin />
+  //fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-soft: #f5f7f8;
+      --ink: #14202b;
+      --muted: #5f6b76;
+      --line: #e6ebef;
+      --accent: #234b3d;
+      --accent-soft: #edf3ef;
+      --shadow: 0 18px 40px rgba(20, 32, 43, 0.06);
+      --radius: 18px;
+      --max: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    .brand-sub {
+      font-size: 0.76rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.35rem;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      font-size: 0.92rem;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .hero {
+      padding: 5.2rem 0 3.2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.9fr) minmax(280px, 1fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .hero h1 {
+      font-family: "Newsreader", serif;
+      font-size: clamp(2.8rem, 5.6vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      max-width: 11ch;
+    }
+
+    .hero .lead {
+      margin-top: 1.3rem;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.6rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 46px;
+      padding: 0.78rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: #ffffff;
+      border-color: var(--ink);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      background: var(--surface-soft);
+      color: var(--ink);
+    }
+
+    .btn-secondary:hover {
+      background: #eef2f4;
+    }
+
+    .hero-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      box-shadow: 0 8px 24px rgba(20, 32, 43, 0.03);
+    }
+
+    .panel-kicker {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .panel-stat {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0.95rem 0.9rem;
+    }
+
+    .panel-stat strong {
+      display: block;
+      font-family: "Newsreader", serif;
+      font-size: 1.9rem;
+      line-height: 1;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .panel-stat span {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .panel-notes {
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .panel-notes div {
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .panel-notes strong {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .panel-notes span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .section {
+      padding: 3.2rem 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-kicker {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-head h2 {
+      font-family: "Newsreader", serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .section-link {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .featured-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      min-height: 240px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: #d4dde3;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      background: var(--accent-soft);
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .card-top .open {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .featured-card h3 {
+      font-size: 1.2rem;
+      line-height: 1.42;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .featured-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      margin-top: auto;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .card-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .card-meta span::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #b6c0c8;
+    }
+
+    .archive-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--muted);
+      padding: 0.66rem 0.9rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      color: var(--ink);
+      background: var(--surface-soft);
+      border-color: #d5dee5;
+    }
+
+    .search-field {
+      flex: 1;
+      max-width: 360px;
+      min-width: 240px;
+    }
+
+    .search-field input {
+      width: 100%;
+      min-height: 46px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--ink);
+      padding: 0 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-field input:focus {
+      border-color: #c8d3da;
+      box-shadow: 0 0 0 4px rgba(35, 75, 61, 0.08);
+    }
+
+    .archive-meta {
+      margin-bottom: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .archive-table-wrap {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .archive-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .archive-table thead {
+      background: var(--surface-soft);
+    }
+
+    .archive-table th,
+    .archive-table td {
+      text-align: left;
+      padding: 1rem 1.05rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .archive-table th {
+      font-size: 0.76rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+    }
+
+    .archive-table tbody tr:hover {
+      background: #fafbfd;
+    }
+
+    .title-cell a {
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    .title-cell a:hover {
+      color: var(--accent);
+    }
+
+    .table-sub {
+      display: block;
+      margin-top: 0.35rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0.35rem 0.68rem;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--ink);
+      font-size: 0.76rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .chip-platform-github {
+      background: #f1effa;
+      color: #4e3c7e;
+    }
+
+    .chip-platform-x {
+      background: #eef3f6;
+      color: #2c4658;
+    }
+
+    .quality-badge {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 0.45rem;
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+      background: #ecf7ef;
+      color: #2f6b46;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .mobile-list {
+      display: none;
+      gap: 0.9rem;
+    }
+
+    .mobile-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1rem;
+      background: #ffffff;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .mobile-card h3 {
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .mobile-card .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+      gap: 1.2rem;
+    }
+
+    .about-card,
+    .focus-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #ffffff;
+      padding: 1.35rem;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.85;
+    }
+
+    .about-card p + p {
+      margin-top: 1rem;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface-soft);
+      padding: 1rem 0.95rem;
+    }
+
+    .metric-value {
+      display: block;
+      font-family: "Newsreader", serif;
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .metric-label {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .focus-card h3,
+    .about-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.9rem;
+      font-weight: 700;
+    }
+
+    .focus-list {
+      display: grid;
+      gap: 0.95rem;
+    }
+
+    .focus-item {
+      padding-bottom: 0.95rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .focus-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .focus-item strong {
+      display: block;
+      font-size: 0.92rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .focus-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    footer {
+      padding: 2.4rem 0 1rem;
+    }
+
+    .footer-inner {
+      border-top: 1px solid var(--line);
+      padding-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 0.15rem;
+        flex-wrap: nowrap;
+      }
+
+      .panel-grid,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .archive-table-wrap {
+        display: none;
+      }
+
+      .mobile-list {
+        display: grid;
+      }
+
+      .hero {
+        padding-top: 4.2rem;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="topbar">
+      <a class="brand" href="#top">
+        <span class="brand-name">Xavier Chen</span>
+        <span class="brand-sub">Investing Research</span>
+      </a>
+      <nav class="nav">
+        <a href="#research">Research</a>
+        <a href="#archive">Archive</a>
+        <a href="#about">About</a>
+        <a href="https://x.com/ChenXiaoCapital" target="_blank" rel="noopener">X</a>
+        <a href="https://github.com/Xiaowen-CHEN-Learner" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">Independent investing research</p>
+      <div class="hero-grid">
+        <div>
+          <h1>Research on markets, companies, and the future of work.</h1>
+          <p class="lead">
+            Xavier Chen is a Hong Kong based finance professional and incoming Rutgers Master of Financial Analysis student.
+            This site presents article driven research across US equities, macro, technology, and quantamental investing projects, with the writing placed at the center of the experience.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#archive">Browse research</a>
+            <a class="btn btn-secondary" href="https://x.com/ChenXiaoCapital" target="_blank" rel="noopener">Follow on X</a>
+            <a class="btn btn-secondary" href="https://github.com/Xiaowen-CHEN-Learner" target="_blank" rel="noopener">View GitHub</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="panel-kicker">Library overview</div>
+          <div class="panel-grid">
+            <div class="panel-stat">
+              <strong>18</strong>
+              <span>Articles and projects</span>
+            </div>
+            <div class="panel-stat">
+              <strong>5</strong>
+              <span>Research categories</span>
+            </div>
+            <div class="panel-stat">
+              <strong>2</strong>
+              <span>Publishing platforms</span>
+            </div>
+          </div>
+          <div class="panel-notes">
+            <div>
+              <strong>Focus</strong>
+              <span>Macro, US equities, technology, and quantamental frameworks.</span>
+            </div>
+            <div>
+              <strong>Background</strong>
+              <span>Audit, in house accounting, Group FP&amp;A, and self directed investing.</span>
+            </div>
+            <div>
+              <strong>Direction</strong>
+              <span>Hong Kong today, Rutgers in 2026, US East Coast investing path ahead.</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="research">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Latest work</p>
+          <h2>Featured research</h2>
+        </div>
+        <a class="section-link" href="https://x.com/ChenXiaoCapital" target="_blank" rel="noopener">Open X profile</a>
+      </div>
+      <div class="featured-grid" id="featuredList"></div>
+    </section>
+
+    <section class="section" id="archive">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Research library</p>
+          <h2>All articles and projects</h2>
+        </div>
+        <a class="section-link" href="https://x.com/ChenXiaoCapital/articles" target="_blank" rel="noopener">View article page</a>
+      </div>
+
+      <div class="archive-toolbar">
+        <div class="filter-bar" id="filterBar"></div>
+        abel class="search-field">
+          <input type="text" id="searchInput" placeholder="Search title, category, or platform" />
+        </label>
+      </div>
+
+      <div class="archive-meta" id="archiveMeta"></div>
+
+      <div class="archive-table-wrap">
+        <table class="archive-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Platform</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="mobile-list" id="mobileList"></div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Profile</p>
+          <h2>About Xavier</h2>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Professional background</h3>
+          <p>
+            Xavier has 4.5 years of finance experience across external audit, in house accounting, and Group FP&amp;A in Hong Kong.
+            His investing work combines bottom up research, macro context, valuation discipline, and systematic thinking.
+          </p>
+          <p>
+            He is joining the Rutgers Master of Financial Analysis program in September 2026 and is building toward an investing related role on the US East Coast.
+            The writing collected here is designed to show process, judgment, and idea development over time.
+          </p>
+        </div>
+
+        <div class="focus-card">
+          <div class="metric-grid">
+            <div class="metric">
+              <span class="metric-value">4.5</span>
+              <span class="metric-label">Years in finance</span>
+            </div>
+            <div class="metric">
+              <span class="metric-value">US</span>
+              <span class="metric-label">Equity focus</span>
+            </div>
+            <div class="metric">
+              <span class="metric-value">2027</span>
+              <span class="metric-label">Expected graduation</span>
+            </div>
+          </div>
+
+          <h3>Research themes</h3>
+          <div class="focus-list">
+            <div class="focus-item">
+              <strong>Market work</strong>
+              <span>Macro observations, single stock analysis, and industry reviews.</span>
+            </div>
+            <div class="focus-item">
+              <strong>Technology</strong>
+              <span>AI infrastructure, software economics, and labor market implications.</span>
+            </div>
+            <div class="focus-item">
+              <strong>Quantamental</strong>
+              <span>Factor exposure, sentiment monitoring, portfolio review, and practical tools.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-inner">
+        <span>Xavier Chen, Hong Kong, Investing Research Archive</span>
+        <span>
+          <a href="https://x.com/ChenXiaoCapital" target="_blank" rel="noopener">@ChenXiaoCapital</a>
+          &nbsp;|&nbsp;
+          <a href="https://github.com/Xiaowen-CHEN-Learner" target="_blank" rel="noopener">GitHub</a>
+        </span>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const articles = [
+      {
+        title: "China macro - Better than expected economic data but remain wait&see amid uncertainties",
+        category: "China Macro",
+        location: "Hong Kong",
+        date: "20260318",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2034193380297875580"
+      },
+      {
+        title: "Jobs that appear in the past and that will appear in the future",
+        category: "Investing Reflections",
+        location: "Hong Kong",
+        date: "20260318",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2034165006955422150"
+      },
+      {
+        title: "Current status is never guarenteed in the future",
+        category: "Investing Reflections",
+        location: "Hong Kong",
+        date: "20260313",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2032385721667903937"
+      },
+      {
+        title: "Story of AI infrastructure buildout: BE, LITE, SNDK",
+        category: "Tech & AI",
+        location: "Hong Kong",
+        date: "20260311",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2031578007576428834"
+      },
+      {
+        title: "MSFT price target in 2027 Q1 445 range: [371,559]",
+        category: "Tech & AI",
+        location: "Hong Kong",
+        date: "20260309",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2030878519472120185"
+      },
+      {
+        title: "Shrink of headcount in finance - especially equity research",
+        category: "Investing Reflections",
+        location: "Hong Kong",
+        date: "20260306",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2029807943332548705"
+      },
+      {
+        title: "Mistras group Q4 earning review - Mild revenue growth while worries on profit [NYSE: MG]",
+        category: "TIC Industry",
+        location: "Hong Kong",
+        date: "20260305",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2029402772555321568"
+      },
+      {
+        title: "Mistras group earning results preview [NYSE: MG]",
+        category: "TIC Industry",
+        location: "Hong Kong",
+        date: "20260303",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2028701979644768639"
+      },
+      {
+        title: "AI in practice - The difference of active learning and passive copy (proper AI learning methods)",
+        category: "Investing Reflections",
+        location: "Hong Kong",
+        date: "20260302",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2028359728653582524"
+      },
+      {
+        title: "Expectations and board cycles",
+        category: "Investing Reflections",
+        location: "Hong Kong",
+        date: "20260301",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2027927948679123453"
+      },
+      {
+        title: "The reality behind AI replacement - excuse from management",
+        category: "Tech & AI",
+        location: "Hong Kong",
+        date: "20260227",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2027265368163824110"
+      },
+      {
+        title: "Quantamental investing - From single stock performance to factor exposure (1)",
+        category: "Quantamental Investing Projects",
+        location: "Hong Kong",
+        date: "20260225",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2026534808017604727"
+      },
+      {
+        title: "AI Era - young man's future choices (after Citrini's report)",
+        category: "Investing Reflections",
+        location: "Hong Kong",
+        date: "20260224",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2026174125325316299"
+      },
+      {
+        title: "The future of software companies",
+        category: "Tech & AI",
+        location: "Hong Kong",
+        date: "20260223",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2025860118592827749"
+      },
+      {
+        title: "TIC Industry - 2026 forward looking",
+        category: "TIC Industry",
+        location: "Hong Kong",
+        date: "20260220",
+        quality: "",
+        platform: "X article",
+        link: "https://x.com/ChenXiaoCapital/status/2024758086498734338"
+      },
+      {
+        title: "Chen's portfolio 2025 Performance",
+        category: "Quantamental Investing Projects",
+        location: "Hong Kong",
+        date: "NA",
+        quality: "",
+        platform: "GitHub",
+        link: "https://github.com/Xiaowen-CHEN-Learner/Quantitative-investing_Quantamental-approach/tree/main/Chen's%20Portfolio%20Performance"
+      },
+      {
+        title: "Quantitative-investing - Market_Sentiment_Monitor",
+        category: "Quantamental Investing Projects",
+        location: "Hong Kong",
+        date: "NA",
+        quality: "High",
+        platform: "GitHub",
+        link: "https://github.com/Xiaowen-CHEN-Learner/Quantitative-investing_Quantamental-approach/tree/main/Market_Sentiment_Monitor"
+      },
+      {
+        title: "Quantitative-investing - VIX_for_Index_Strengthen",
+        category: "Quantamental Investing Projects",
+        location: "Hong Kong",
+        date: "NA",
+        quality: "",
+        platform: "GitHub",
+        link: "https://github.com/Xiaowen-CHEN-Learner/Quantitative-investing_Quantamental-approach/tree/main/VIX_for_Index_Strengthen"
+      }
+    ];
+
+    const categoryOrder = [
+      "All",
+      "China Macro",
+      "Investing Reflections",
+      "Tech & AI",
+      "TIC Industry",
+      "Quantamental Investing Projects"
+    ];
+
+    let activeCategory = "All";
+
+    const featuredList = document.getElementById("featuredList");
+    const filterBar = document.getElementById("filterBar");
+    const searchInput = document.getElementById("searchInput");
+    const archiveMeta = document.getElementById("archiveMeta");
+    const tableBody = document.getElementById("tableBody");
+    const mobileList = document.getElementById("mobileList");
+
+    function parseDate(value) {
+      if (!value || value === "NA") return null;
+      const year = value.slice(0, 4);
+      const month = value.slice(4, 6);
+      const day = value.slice(6, 8);
+      return new Date(`${year}-${month}-${day}T00:00:00`);
+    }
+
+    function formatDate(value) {
+      const date = parseDate(value);
+      if (!date) return "Ongoing";
+      return new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      }).format(date);
+    }
+
+    function sortArticles(list) {
+      return [...list].sort((a, b) => {
+        const aDate = parseDate(a.date);
+        const bDate = parseDate(b.date);
+        if (aDate && bDate) return bDate - aDate;
+        if (bDate) return 1;
+        if (aDate) return -1;
+        return a.title.localeCompare(b.title);
+      });
+    }
+
+    function platformChipClass(platform) {
+      return platform === "GitHub" ? "chip chip-platform-github" : "chip chip-platform-x";
+    }
+
+    function getFilteredArticles() {
+      const term = searchInput.value.trim().toLowerCase();
+
+      return sortArticles(articles).filter(item => {
+        const categoryMatch = activeCategory === "All" || item.category === activeCategory;
+        const termMatch = `${item.title} ${item.category} ${item.platform} ${item.location}`
+          .toLowerCase()
+          .includes(term);
+        return categoryMatch && termMatch;
+      });
+    }
+
+    function renderFilters() {
+      filterBar.innerHTML = categoryOrder
+        .filter(cat => cat === "All" || articles.some(item => item.category === cat))
+        .map(cat => {
+          const active = cat === activeCategory ? "active" : "";
+          return `<button class="filter-btn ${active}" data-category="${cat}">${cat}</button>`;
+        })
+        .join("");
+
+      filterBar.querySelectorAll(".filter-btn").forEach(button => {
+        button.addEventListener("click", () => {
+          activeCategory = button.dataset.category;
+          renderFilters();
+          renderArchive();
+        });
+      });
+    }
+
+    function renderFeatured() {
+      const featured = sortArticles(articles).filter(item => item.date !== "NA").slice(0, 4);
+
+      featuredList.innerHTML = featured.map(item => `
+        <a class="featured-card" href="${item.link}" target="_blank" rel="noopener">
+          <div class="card-top">
+            <span class="badge">${item.category}</span>
+            <span class="open">Open</span>
+          </div>
+          <h3>${item.title}</h3>
+          <p>${item.platform} · ${item.location}</p>
+          <div class="card-meta">
+            <span>${formatDate(item.date)}</span>
+            <span>${item.category}</span>
+          </div>
+        </a>
+      `).join("");
+    }
+
+    function renderArchive() {
+      const filtered = getFilteredArticles();
+      const countText = `${filtered.length} item${filtered.length === 1 ? "" : "s"} shown`;
+      archiveMeta.textContent = activeCategory === "All" ? countText : `${countText} in ${activeCategory}`;
+
+      tableBody.innerHTML = filtered.map(item => `
+        <tr>
+          <td class="title-cell">
+            <a href="${item.link}" target="_blank" rel="noopener">${item.title}</a>
+            <span class="table-sub">${item.location}</span>
+            ${item.quality ? `<span class="quality-badge">Quality: ${item.quality}</span>` : ""}
+          </td>
+          <td><span class="chip">${item.category}</span></td>
+          <td>${formatDate(item.date)}</td>
+          <td><span class="${platformChipClass(item.platform)}">${item.platform}</span></td>
+          <td><a class="section-link" href="${item.link}" target="_blank" rel="noopener">View</a></td>
+        </tr>
+      `).join("");
+
+      mobileList.innerHTML = filtered.map(item => `
+        <a class="mobile-card" href="${item.link}" target="_blank" rel="noopener">
+          <div class="row">
+            <span class="chip">${item.category}</span>
+            <span class="${platformChipClass(item.platform)}">${item.platform}</span>
+          </div>
+          <h3>${item.title}</h3>
+          <div class="row" style="color: var(--muted); font-size: 0.9rem;">
+            <span>${formatDate(item.date)}</span>
+            <span>${item.location}</span>
+          </div>
+          ${item.quality ? `<div class="quality-badge">Quality: ${item.quality}</div>` : ""}
+        </a>
+      `).join("");
+    }
+
+    searchInput.addEventListener("input", renderArchive);
+
+    renderFilters();
+    renderFeatured();
+    renderArchive();
+  </script>
+</body>
+</html>
 
